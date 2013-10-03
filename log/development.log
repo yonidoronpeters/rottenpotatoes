@@ -1,0 +1,18 @@
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2013-09-30 18:56:57 -0700
+Connecting to database specified by database.yml
+Served asset /rails.png - 304 Not Modified (268ms)
+
+
+Started GET "/movies" for 127.0.0.1 at 2013-09-30 18:57:00 -0700
+Processing by MoviesController#index as HTML
+Completed 500 Internal Server Error in 2ms
+
+ActiveRecord::StatementInvalid (Could not find table 'movies'):
+  app/controllers/movies_controller.rb:10:in `index'
+
+
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.14/lib/action_dispatch/middleware/templates/rescues/_trace.erb (7.2ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.14/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.9ms)
+  Rendered /home/saasbook/.rvm/gems/ruby-1.9.3-p448/gems/actionpack-3.2.14/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (209.4ms)
