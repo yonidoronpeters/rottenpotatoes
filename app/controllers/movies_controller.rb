@@ -9,13 +9,18 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.ratings
-    if ! params[:ratings].present?; flash.keep; redirect_to session[:params]; end
+    if ! params[:ratings].present? && session[:params].present?; flash.keep; redirect_to session[:params]; end
+    
+    if ! session[:params].present?
+      session[:params] = Hash.new; session[:params][:ratings] = Hash.new
+      @all_ratings.each { |key| session[:params][:ratings][key] = '1' }
+    end #new session
     
     @sort_by = params[:sort] || session[:sort]
     if params[:sort] != session[:sort]; session[:sort] = @sort_by; end
     
     @ratings = (params[:ratings].present? ? params[:ratings].keys : session[:params][:ratings].keys)
-    
+
     if @sort_by == 'title'
       @title = 'hilite'
       @movies = Movie.where('rating' => @ratings).order('title ASC')
