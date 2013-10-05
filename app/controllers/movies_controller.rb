@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
 
+  Rails.logger = Logger.new(STDOUT)
   def show
     id = params[:id] # retrieve movie ID from URI route
     @movie = Movie.find(id) # look up movie by unique ID
@@ -7,13 +8,18 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @all_ratings = Movie.ratings
     @sort_by = params[:sort] || session[:sort]
+    @ratings = (params[:ratings].present? ? params[:ratings].keys : @all_ratings)
+    logger.debug("ratings hash: #{@ratings}")
     if @sort_by == 'title'
-      @movies = Movie.order('title ASC')
+      @title = 'hilite'
+      @movies = Movie.where('rating' => @ratings).order('title ASC')
     elsif @sort_by == 'release_date'
-      @movies = Movie.order('release_date ASC')
+      @release_date = 'hilite'
+      @movies = Movie.where('rating' => @ratings).order('release_date ASC')
     else
-      @movies = Movie.all
+      @movies = Movie.where('rating' => @ratings)
     end
   end
 
