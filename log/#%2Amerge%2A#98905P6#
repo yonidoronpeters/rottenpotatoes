@@ -2516,7 +2516,6 @@ Served asset /jquery_ujs.js - 304 Not Modified (0ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-10-04 01:00:21 -0700
 Served asset /application.js - 304 Not Modified (0ms)
-<<<<<<< HEAD
 
 
 Started GET "/movies.id" for 127.0.0.1 at 2013-10-04 16:35:23 -0700
@@ -5231,5 +5230,3 @@ Served asset /application.css - 304 Not Modified (0ms)
 Served asset /jquery.js - 304 Not Modified (0ms)
 Served asset /jquery_ujs.js - 304 Not Modified (0ms)
 Served asset /application.js - 304 Not Modified (1ms)
-=======
->>>>>>> a5f8959acfc99d91be57c7be8c07327f8de4b94c

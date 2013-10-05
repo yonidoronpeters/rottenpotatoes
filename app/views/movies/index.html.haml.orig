@@ -5,15 +5,21 @@
   Include:
   - @all_ratings.each do |rating|
     = rating
-    = check_box_tag "ratings[#{rating}]", 1, @ratings.include?(rating)
+    = check_box_tag "ratings[#{rating}]", rating, @ratings.include?(rating)
   = submit_tag 'Refresh'
 
 %table#movies
   %thead
     %tr
+<<<<<<< HEAD
       %th{:class => @title}= link_to "Movie Title", movies_path(:sort => 'title', :ratings => params[:ratings]), :id => 'title_header'
       %th Rating
       %th{:class => @release_date}= link_to "Release Date", movies_path(:sort => 'release_date', :ratings => params[:ratings]), :id => 'release_date_header'
+=======
+      %th{:class => ('hilite' if @sort_by == 'title')}= link_to "Movie Title", movies_path(:sort => 'title'), :id => 'title_header'
+      %th Rating
+      %th{:class => ('hilite' if @sort_by == 'release_date')}= link_to "Release Date", movies_path(:sort => 'release_date'), :id => 'release_date_header'
+>>>>>>> a5f8959acfc99d91be57c7be8c07327f8de4b94c
       %th More Info
   %tbody
     - @movies.each do |movie|

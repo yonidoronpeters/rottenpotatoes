@@ -8,17 +8,11 @@ class MoviesController < ApplicationController
   end
 
   def index
+<<<<<<< HEAD
     @all_ratings = Movie.ratings
-    if ! params[:ratings].present?; flash.keep; redirect_to session[:params]; end
-    
     @sort_by = params[:sort] || session[:sort]
-    if params[:sort] != session[:sort]; session[:sort] = params[:sort]; end
-    @ratings = (params[:ratings].present? ? params[:ratings].keys : session[:params][:ratings].keys)
-    logger.debug("params hash : #{params}")
-    logger.debug("ratings: #{@ratings}")
-    logger.debug("session hash: #{session}")
-    #params.each_pair { |key, value| session[key] = value }
-    
+    @ratings = (params[:ratings].present? ? params[:ratings].keys : @all_ratings)
+    logger.debug("ratings hash: #{@ratings}")
     if @sort_by == 'title'
       @title = 'hilite'
       @movies = Movie.where('rating' => @ratings).order('title ASC')
@@ -27,8 +21,16 @@ class MoviesController < ApplicationController
       @movies = Movie.where('rating' => @ratings).order('release_date ASC')
     else
       @movies = Movie.where('rating' => @ratings)
+=======
+    @sort_by = params[:sort] || session[:sort]
+    if @sort_by == 'title'
+      @movies = Movie.order('title ASC')
+    elsif @sort_by == 'release_date'
+      @movies = Movie.order('release_date ASC')
+    else
+      @movies = Movie.all
+>>>>>>> a5f8959acfc99d91be57c7be8c07327f8de4b94c
     end
-    session[:params] = params
   end
 
   def new
