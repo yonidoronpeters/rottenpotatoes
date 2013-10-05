@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
 
-  Rails.logger = Logger.new(STDOUT)
+  #Rails.logger = Logger.new(STDOUT)
   def show
     id = params[:id] # retrieve movie ID from URI route
     @movie = Movie.find(id) # look up movie by unique ID
@@ -12,12 +12,9 @@ class MoviesController < ApplicationController
     if ! params[:ratings].present?; flash.keep; redirect_to session[:params]; end
     
     @sort_by = params[:sort] || session[:sort]
-    if params[:sort] != session[:sort]; session[:sort] = params[:sort]; end
+    if params[:sort] != session[:sort]; session[:sort] = @sort_by; end
+    
     @ratings = (params[:ratings].present? ? params[:ratings].keys : session[:params][:ratings].keys)
-    logger.debug("params hash : #{params}")
-    logger.debug("ratings: #{@ratings}")
-    logger.debug("session hash: #{session}")
-    #params.each_pair { |key, value| session[key] = value }
     
     if @sort_by == 'title'
       @title = 'hilite'
